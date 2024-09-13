@@ -1,0 +1,9 @@
+FROM denoland/deno:alpine-1.45.5
+
+WORKDIR /app
+
+COPY . .
+
+EXPOSE 7777
+
+CMD ["deno", "run", "--allow-net", "--allow-read", "--allow-env", "back_server.js"]

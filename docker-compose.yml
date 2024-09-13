@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - presentation
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "7777:7777"
+    volumes:
+      - .:/app
+    environment:
+      - MODE=${MODE:-production}
+    command: >
+      sh -c "
+      if [ '$$MODE' = 'development' ]; then
+        deno run --allow-net --allow-read --allow-env --watch back_server.js;
+      else
+        deno run --allow-net --allow-read --allow-env back_server.js;
+      fi"
+    networks:
+      - presentation
+
+networks:
+  presentation:
+    driver: bridge
