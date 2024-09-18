@@ -1,12 +1,10 @@
 <script>
 	import axios from "axios";
-	import ShowCode from "./ShowCode.svelte";
-	import Unittest from "./Unittest.svelte";
 
 	let value = '0';
 	const operator = ['+', '-', '*', '/'];
 
-	function append(num) {
+	export function appendNumber (num) {
 		if (value.length > 10) return;
 		/* 
 		ameliorer gestion des erreurs
@@ -59,25 +57,25 @@
 <div class="wrapper">
     <div class="container 1">
 		<div class="calculator">
-			<div  id="display">{value}</div>
+			<div  id="display" data-testid="display">{value}</div>
 			<div class="buttons">
 				<button class="clear top" on:click={() => clearValue()} value="clear">C</button>
-				<button class="operator top" on:click={() => append('%')} value="%">%</button>
-				<button class="operator" on:click={() => append('/')} value="/">/</button>
-				<button class="number" on:click={() => append('7')} value="7">7</button>
-				<button class="number" on:click={() => append('8')} value="8">8</button>
-				<button class="number" on:click={() => append('9')} value="9">9</button>
-				<button class="operator" on:click={() => append('*')} value="*">x</button>
-				<button class="number" on:click={() => append('4')} value="4">4</button>
-				<button class="number" on:click={() => append('5')} value="5">5</button>
-				<button class="number" on:click={() => append('6')} value="6">6</button>
-				<button class="operator" on:click={() => append('-')} value="-">-</button>
-				<button class="number" on:click={() => append('1')} value="1">1</button>
-				<button class="number" on:click={() => append('2')} value="2">2</button>
-				<button class="number" on:click={() => append('3')} value="3">3</button>
-				<button class="operator" on:click={() => append('+')} value="+">+</button>
-				<button class="number zero" on:click={() => append('0')} value="0">0</button>
-				<button class="number" on:click={() => append('.') } value=".">.</button>
+				<button class="operator top" on:click={() => appendNumber('%')} value="%">%</button>
+				<button class="operator" on:click={() => appendNumber('/')} value="/">/</button>
+				<button class="number" on:click={() => appendNumber('7')} value="7">7</button>
+				<button class="number" on:click={() => appendNumber('8')} value="8">8</button>
+				<button class="number" on:click={() => appendNumber('9')} value="9">9</button>
+				<button class="operator" on:click={() => appendNumber('*')} value="*">x</button>
+				<button class="number" on:click={() => appendNumber('4')} value="4">4</button>
+				<button class="number" on:click={() => appendNumber('5')} value="5">5</button>
+				<button class="number" on:click={() => appendNumber('6')} value="6">6</button>
+				<button class="operator" on:click={() => appendNumber('-')} value="-">-</button>
+				<button class="number" on:click={() => appendNumber('1')} value="1">1</button>
+				<button class="number" on:click={() => appendNumber('2')} value="2">2</button>
+				<button class="number" on:click={() => appendNumber('3')} value="3">3</button>
+				<button class="operator" on:click={() => appendNumber('+')} value="+">+</button>
+				<button class="number zero" on:click={() => appendNumber('0')} value="0">0</button>
+				<button class="number" on:click={() => appendNumber('.') } value=".">.</button>
 				<button class="equal" on:click={() => fetchResult()} value="=">=</button>
 			</div>
 		</div>
