@@ -1,6 +1,18 @@
 import { render, fireEvent, waitFor } from '@testing-library/svelte';
 import { test, expect, vi } from 'vitest';
-import Calculator from '../../src/calculator.svelte';
+import Calculator from '../src/calculator.svelte';
+
+
+/*
+Explanation of Functions:
+- render: Renders a Svelte component for testing.
+- fireEvent: Simulates user events like clicks.
+- waitFor: Waits for conditions to be met before proceeding.
+- test: Defines an individual test case. Each test block contains a single test.
+- expect: Asserts that a value meets certain conditions.
+- getByRole: Selects elements by their ARIA role.
+- getByTestId: Selects elements by their data-testid attribute.
+*/
 
 const testButtonPress = async (buttonName, expectedDisplay) => {
 	const { getByRole, getByTestId } = render(Calculator);
@@ -78,7 +90,7 @@ test("Press +", async () => {
 });
   
 test("Press *", async () => {
-	await testButtonPress("*", "0");
+	await testButtonPress("x", "0");
 });
   
 test("Press /", async () => {

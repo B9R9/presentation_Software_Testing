@@ -22,4 +22,4 @@ COPY server.js .
 
 EXPOSE 8000
 
-CMD ["deno", "run", "--allow-net", "--allow-read", "server.js"]
+CMD ["deno", "run", "--allow-net", "--allow-read", "--watch", "server.js"]

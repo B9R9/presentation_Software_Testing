@@ -1,6 +1,17 @@
+/*
+Explanation of Functions:
+- render: Renders a Svelte component for testing.
+- fireEvent: Simulates user events like clicks.
+- waitFor: Waits for conditions to be met before proceeding.
+- test: Defines an individual test case. Each test block contains a single test.
+- expect: Asserts that a value meets certain conditions.
+- getByRole: Selects elements by their ARIA role.
+- getByTestId: Selects elements by their data-testid attribute.
+*/
+
 import { render, fireEvent, waitFor } from '@testing-library/svelte';
 import { test, expect } from 'vitest';
-import Calculator from '../../src/calculator.svelte';
+import Calculator from '../src/calculator.svelte';
 
 test("Sequence of operations: 1+2*3-4/2=5", async () => {
     const { getByRole, getByTestId } = render(Calculator);
@@ -39,11 +50,11 @@ import Calculator from '../../src/calculator.svelte';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-// Créez une instance de MockAdapter sur l'instance axios par défaut
+// Create an instance of MockAdapter on the default axios instance
 const mock = new MockAdapter(axios);
 
 test("Server communication: 1+1=2", async () => {
-    // Mock la réponse du serveur
+    // Mock the server response
     mock.onPost('http://localhost:7777/calculate').reply(200, "2");
 
     const { getByRole, getByTestId } = render(Calculator);
@@ -79,7 +90,7 @@ test("Clear calculator", async () => {
 });
 
 test("Server error handling", async () => {
-    // Mock une réponse d'erreur du serveur
+    // Mock a server error response
     mock.onPost('http://localhost:7777/calculate').reply(500);
 
     const { getByRole, getByTestId } = render(Calculator);

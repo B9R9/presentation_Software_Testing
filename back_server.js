@@ -20,7 +20,22 @@ router.options("/calculate", (context) => {
     context.response.status = 204;
 });
 
-const calculate = async (data) => {
+export const performOperation = (a, b, operator) => {
+    switch (operator) {
+        case "+":
+            return a + b;
+        case "-":
+            return a - b;
+        case "*":
+            return a * b;
+        case "/":
+            return a / b;
+        default:
+            return 0;
+    }
+};
+
+export const calculate = async (data) => {
     let calcul = [];
     let result = 0;
     let number = "";
@@ -36,21 +51,6 @@ const calculate = async (data) => {
     }
     calcul.push(parseFloat(number));
 
-    const performOperation = (a, b, operator) => {
-        switch (operator) {
-            case "+":
-                return a + b;
-            case "-":
-                return a - b;
-            case "*":
-                return a * b;
-            case "/":
-                return a / b;
-            default:
-                return 0;
-        }
-    };
-  
     let i = 0;
     while (i < calcul.length) {
         if (calcul[i] === "*" || calcul[i] === "/") {
